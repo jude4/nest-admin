@@ -16,4 +16,8 @@ export class UserService {
     async create(data: {email: string, password: string, first_name: string, last_name: string}): Promise<User> {
         return this.userRepository.save(data);
     }
+
+    async findOne(condition): Promise<User>{
+        return this.userRepository.findOne(condition);
+    }
 }
