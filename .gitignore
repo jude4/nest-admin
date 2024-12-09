@@ -392,7 +392,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-=======
+# MySQL data directory
+.dbdata/
+
 # Local
 .env
 dist
