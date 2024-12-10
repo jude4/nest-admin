@@ -25,7 +25,7 @@ export class AuthController {
         @Body('email') email: string, 
         @Body('password') password: string
     ) {
-        const user = this.userService.findOne({email});
+        const user = await this.userService.findOne({email});
 
         if (!user) {
             throw new NotFoundException('User not found');
@@ -34,6 +34,8 @@ export class AuthController {
         if (!await bcrypt.compare(password, user.password)) {
             throw new BadRequestException('Invalid credentails');
         }
+
+        return user;
     }
     
 }
