@@ -13,11 +13,41 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    async create(data: {email: string, password: string, first_name: string, last_name: string}): Promise<User> {
+    async paginate(page: number = 1): Promise<any> {
+        const take = 15;
+
+        const [users, total] = await this.userRepository.findAndCount({
+            take,
+            skip: (page - 1) * take, // 1 - 10, 11 - 20, 21 - 30
+        });
+
+        const last_page = Math.ceil(total / take);
+
+        return {
+            data: users,
+            meta: {
+                total,
+                page,
+                last_page,
+            }
+        }
+    }
+
+    async create(data): Promise<User> {
         return this.userRepository.save(data);
     }
 
     async findOne(condition): Promise<User>{
-        return this.userRepository.findOne(condition);
+        return this.userRepository.findOne({
+            where: condition
+        });
+    }
+
+    async update(id: number, data): Promise<any> {
+        return this.userRepository.update(id, data);
+    }
+
+    async delete(id: number): Promise<any> {
+        return this.userRepository.delete(id);
     }
 }
