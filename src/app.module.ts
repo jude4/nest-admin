@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { RoleModule } from './role/role.module';
+import { ProductService } from './product/product.service';
+import { ServiceModule } from './service/service.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -23,8 +26,10 @@ import { RoleModule } from './role/role.module';
     AuthModule,
     CommonModule,
     RoleModule,
+    ServiceModule,
+    ProductModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ProductService],
 })
 export class AppModule {}
