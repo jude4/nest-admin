@@ -9,6 +9,7 @@ import { RoleModule } from './role/role.module';
 import { ProductService } from './product/product.service';
 import { ServiceModule } from './service/service.module';
 import { ProductModule } from './product/product.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ProductModule } from './product/product.module';
     RoleModule,
     ServiceModule,
     ProductModule,
+    PermissionModule,
   ],
   controllers: [AppController],
   providers: [AppService, ProductService],
